@@ -1,0 +1,15 @@
+Sale Date: 2024-05-12 22:01:29
+ISBN: Hellooooo
+Quantity Sold: 5
+Total Amount: $390.0
+
+Sale Date: 2024-05-12 22:04:00
+ISBN: ISBN1
+Quantity Sold: 4
+Total Amount: $200.0
+
+Sale Date: 2024-05-12 22:42:46
+ISBN: ISBN1
+Quantity Sold: 5
+Total Amount: $250.0
+
