@@ -22,31 +22,24 @@ public class Book {
     public String getIsbn() {
         return isbn;
     }
-
     public String getTitle() {
         return title;
     }
-
     public String getAuthor() {
         return author;
     }
-
     public String getGenre() {
         return genre;
     }
-
     public double getPrice() {
         return price;
     }
-
     public int getQuantity() {
         return quantity;
     }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
     @Override
     public String toString() {
         return

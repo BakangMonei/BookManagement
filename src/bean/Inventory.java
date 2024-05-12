@@ -13,23 +13,18 @@ public class Inventory {
     public Inventory() {
         books = new HashSet<>();
     }
-
     public void addBook(Book book) {
         books.add(book);
     }
-
     public void removeBook(Book book) {
         books.remove(book);
     }
-
     public boolean containsBook(Book book) {
         return books.contains(book);
     }
-
     public int size() {
         return books.size();
     }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

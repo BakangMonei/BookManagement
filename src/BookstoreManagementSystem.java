@@ -87,9 +87,9 @@ public class BookstoreManagementSystem {
         searchButton.setBackground(Color.ORANGE); // Set button color
         searchButton.addActionListener(e -> searchBooks());
 
-        panel.add(addBookButton, BorderLayout.NORTH);
-        panel.add(displayInventoryButton, BorderLayout.CENTER);
-        panel.add(searchButton, BorderLayout.SOUTH);
+        panel.add(addBookButton, BorderLayout.SOUTH);
+        panel.add(displayInventoryButton, BorderLayout.NORTH);
+        panel.add(searchButton, BorderLayout.CENTER);
 
         return panel;
     }
@@ -259,15 +259,12 @@ public class BookstoreManagementSystem {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
         // Create and configure the JTable
         JTable table = new JTable(model);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         table.setFillsViewportHeight(true);
-
         // Add the table to a JScrollPane for scrollability
         JScrollPane scrollPane = new JScrollPane(table);
-
         // Display the table in a dialog
         JDialog dialog = new JDialog(frame, "Book Inventory", true);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -378,7 +375,6 @@ public class BookstoreManagementSystem {
                 JOptionPane.showMessageDialog(saleDialog, "Please enter ISBN and quantity.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
             int quantity;
             try {
                 quantity = Integer.parseInt(quantityStr);
@@ -389,7 +385,6 @@ public class BookstoreManagementSystem {
                 JOptionPane.showMessageDialog(saleDialog, "Please enter a valid quantity.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
             // Process sale
             try {
                 BufferedReader reader = new BufferedReader(new FileReader("books.txt"));
@@ -400,7 +395,7 @@ public class BookstoreManagementSystem {
                 boolean bookFound = false;
 
                 while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split(",");
+                    String[] parts = line.split("\'");
                     if (parts.length == 6 && parts[0].trim().equalsIgnoreCase(isbn)) { // Corrected comparison
                         int availableQuantity = Integer.parseInt(parts[5].trim());
                         if (quantity <= availableQuantity) {
@@ -415,7 +410,8 @@ public class BookstoreManagementSystem {
                             bookFound = true;
                             break;
                         } else {
-                            JOptionPane.showMessageDialog(saleDialog, "Insufficient quantity available for sale.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(saleDialog, "Insufficient quantity available for sale.",
+                                    "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                     } else {
@@ -449,7 +445,8 @@ public class BookstoreManagementSystem {
                 reportWriter.write(report);
                 reportWriter.close();
 
-                JOptionPane.showMessageDialog(saleDialog, "Sale processed successfully.\nTotal Amount: $" + totalAmount, "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(saleDialog, "Sale processed successfully.\nTotal Amount: $" + totalAmount,
+                        "Success", JOptionPane.INFORMATION_MESSAGE);
                 saleDialog.dispose();
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -595,7 +592,8 @@ public class BookstoreManagementSystem {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(viewCustomerDialog, "An error occurred while reading customer data.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(viewCustomerDialog, "An error occurred while reading customer data.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         customerPanel.add(scrollPane, BorderLayout.CENTER);
@@ -718,7 +716,4 @@ public class BookstoreManagementSystem {
         JOptionPane.showMessageDialog(frame, new JScrollPane(textArea), "Top Selling Books", JOptionPane.INFORMATION_MESSAGE);
     }
 
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> new BookstoreManagementSystem());
-//    }
 }
